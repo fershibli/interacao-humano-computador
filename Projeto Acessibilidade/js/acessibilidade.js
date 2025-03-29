@@ -1,74 +1,82 @@
+// acessibilidade.js atualizado
 document.addEventListener("DOMContentLoaded", function () {
-  // Leitor de Voz
-  const btnLeitor = document.getElementById("btn-leitor");
+  // Função para aplicar modo de cores
+  function applyColorMode(mode) {
+    document.body.classList.remove("protanopia", "deuteranopia", "tritanopia");
+    if (mode !== "reset") {
+      document.body.classList.add(mode);
+    }
+    announceToScreenReader(
+      mode === "reset"
+        ? "Cores resetadas para o padrão"
+        : `Modo ${mode} ativado`
+    );
+  }
 
+  // Função para anunciar mudanças
+  function announceToScreenReader(message) {
+    const liveRegion =
+      document.getElementById("live-region") || createLiveRegion();
+    liveRegion.textContent = message;
+    setTimeout(() => (liveRegion.textContent = ""), 1000);
+  }
+
+  function createLiveRegion() {
+    const liveRegion = document.createElement("div");
+    liveRegion.id = "live-region";
+    liveRegion.setAttribute("aria-live", "polite");
+    liveRegion.style.position = "absolute";
+    liveRegion.style.overflow = "hidden";
+    liveRegion.style.clip = "rect(0 0 0 0)";
+    document.body.appendChild(liveRegion);
+    return liveRegion;
+  }
+
+  // Event delegation para os botões
+  document.addEventListener("click", function (e) {
+    // Botão principal do dropdown
+    if (e.target.closest("#btn-daltonismo")) {
+      const dropdown = document.querySelector(".dropdown-menu");
+      const isExpanded = dropdown.style.display === "block";
+      dropdown.style.display = isExpanded ? "none" : "block";
+      e.target.setAttribute("aria-expanded", String(!isExpanded));
+    }
+
+    // Itens do dropdown
+    if (e.target.closest(".dropdown-menu button")) {
+      const mode = e.target.dataset.mode;
+      applyColorMode(mode);
+      document.querySelector(".dropdown-menu").style.display = "none";
+      document
+        .getElementById("btn-daltonismo")
+        .setAttribute("aria-expanded", "false");
+    }
+  });
+
+  // Leitor de voz
+  const btnLeitor = document.getElementById("btn-leitor");
   if (btnLeitor) {
     btnLeitor.addEventListener("click", function () {
       if ("speechSynthesis" in window) {
         const synthesis = window.speechSynthesis;
         const utterance = new SpeechSynthesisUtterance();
 
-        // Configurações da voz
         utterance.text = document.querySelector("main").textContent;
         utterance.lang = "pt-BR";
-        utterance.rate = 1.0;
 
-        // Para qualquer fala em andamento antes de começar
         synthesis.cancel();
         synthesis.speak(utterance);
 
-        // Feedback visual
-        btnLeitor.classList.toggle("active");
-        if (btnLeitor.classList.contains("active")) {
-          btnLeitor.setAttribute("aria-label", "Desativar leitor de voz");
-        } else {
-          synthesis.cancel();
-          btnLeitor.setAttribute("aria-label", "Ativar leitor de voz");
-        }
+        this.classList.toggle("active");
+        this.setAttribute(
+          "aria-label",
+          this.classList.contains("active")
+            ? "Desativar leitor de voz"
+            : "Ativar leitor de voz"
+        );
       } else {
         alert("Leitor de voz não suportado neste navegador.");
       }
-    });
-  }
-
-  // Modos de Daltonismo
-  const btnDaltonismo = document.getElementById("btn-daltonismo");
-
-  if (btnDaltonismo) {
-    const dropdown = document.querySelector(".dropdown-menu");
-
-    dropdown.querySelectorAll("button").forEach((btn) => {
-      btn.addEventListener("click", function () {
-        const mode = this.getAttribute("data-mode");
-        document.body.className = mode;
-
-        // Atualiza estado do dropdown
-        btnDaltonismo.setAttribute("aria-expanded", "false");
-        dropdown.style.display = "none";
-
-        // Feedback para usuários de leitor de tela
-        const feedback = document.createElement("div");
-        feedback.setAttribute("aria-live", "polite");
-        feedback.style.position = "absolute";
-        feedback.style.overflow = "hidden";
-        feedback.style.clip = "rect(0 0 0 0)";
-        feedback.style.height = "1px";
-        feedback.style.width = "1px";
-        feedback.style.margin = "-1px";
-        feedback.style.padding = "0";
-        feedback.style.border = "0";
-
-        let message = "";
-        if (mode === "reset") {
-          message = "Cores resetadas para o padrão.";
-        } else {
-          message = `Modo de daltonismo ${mode} ativado.`;
-        }
-
-        feedback.textContent = message;
-        document.body.appendChild(feedback);
-        setTimeout(() => document.body.removeChild(feedback), 1000);
-      });
     });
   }
 });
