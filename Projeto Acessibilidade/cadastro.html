@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/acessibilidade.css">
 </head>
 <body>
-    <!-- Skip Content (acessibilidade) -->
+    
     <a class="skip-content" href="#main">Ir para conteúdo principal</a>
     
     <div id="header-container"></div>
@@ -89,7 +89,6 @@
               $(`#nav-${currentPage.replace('.html', '')}`).attr('aria-current', 'page');
           });
           
-          // Carrega VLibras de forma independente
           const vlibrasScript = document.createElement('script');
           vlibrasScript.src = 'https://vlibras.gov.br/app/vlibras-plugin.js';
           vlibrasScript.onload = function() {

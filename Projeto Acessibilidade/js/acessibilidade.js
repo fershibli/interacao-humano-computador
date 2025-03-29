@@ -1,6 +1,4 @@
-// acessibilidade.js atualizado
 document.addEventListener("DOMContentLoaded", function () {
-  // Função para aplicar modo de cores
   function applyColorMode(mode) {
     document.body.classList.remove("protanopia", "deuteranopia", "tritanopia");
     if (mode !== "reset") {
@@ -13,7 +11,6 @@ document.addEventListener("DOMContentLoaded", function () {
     );
   }
 
-  // Função para anunciar mudanças
   function announceToScreenReader(message) {
     const liveRegion =
       document.getElementById("live-region") || createLiveRegion();
@@ -32,9 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return liveRegion;
   }
 
-  // Event delegation para os botões
   document.addEventListener("click", function (e) {
-    // Botão principal do dropdown
     if (e.target.closest("#btn-daltonismo")) {
       const dropdown = document.querySelector(".dropdown-menu");
       const isExpanded = dropdown.style.display === "block";
@@ -42,7 +37,6 @@ document.addEventListener("DOMContentLoaded", function () {
       e.target.setAttribute("aria-expanded", String(!isExpanded));
     }
 
-    // Itens do dropdown
     if (e.target.closest(".dropdown-menu button")) {
       const mode = e.target.dataset.mode;
       applyColorMode(mode);
@@ -53,7 +47,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Leitor de voz
   const btnLeitor = document.getElementById("btn-leitor");
   if (btnLeitor) {
     btnLeitor.addEventListener("click", function () {

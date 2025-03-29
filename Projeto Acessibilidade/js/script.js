@@ -2,13 +2,10 @@ function initAfterHeaderLoad() {
   const currentPage = window.location.pathname.split("/").pop();
   const pageId = currentPage.replace(".html", "");
 
-  // Remove classe active de todos
   $(".main-nav a").removeClass("active");
 
-  // Adiciona ao link correto
   $(`#nav-${pageId}`).addClass("active");
 
-  // Restante da inicialização
   carregarPokemons();
   carregarDetalhes();
   if ($("#form-pokemon").length) {
@@ -16,37 +13,29 @@ function initAfterHeaderLoad() {
   }
 }
 
-// Modifique o event listener para:
 $(document).ready(function () {
-  // Verifica se é um redirecionamento de cadastro
   const urlParams = new URLSearchParams(window.location.search);
   if (urlParams.get("cadastro") === "sucesso") {
     alert("Pokémon cadastrado com sucesso!");
     history.replaceState(null, "", "index.html");
   }
 
-  // Se o header já estiver carregado (página recarregada)
   if ($("#header-container").children().length > 0) {
     initAfterHeaderLoad();
   }
 });
 
-// Array para armazenar os Pokémons
 let pokemons = JSON.parse(localStorage.getItem("pokemons")) || [];
 
-// Função para salvar no localStorage
 function salvarPokemons() {
   localStorage.setItem("pokemons", JSON.stringify(pokemons));
 }
 
-// Função para carregar Pokémons na listagem
 function carregarPokemons() {
   const lista = document.getElementById("lista-pokemons");
 
-  // Verifica se estamos na página correta
   if (!lista) return;
 
-  // Limpa o conteúdo atual
   lista.innerHTML = "";
 
   if (pokemons.length === 0) {
@@ -71,9 +60,7 @@ function carregarPokemons() {
   });
 }
 
-// Função para carregar detalhes do Pokémon
 function carregarDetalhes() {
-  // Verifica se estamos na página de detalhes
   if (!window.location.pathname.includes("detalhes.html")) return;
 
   const urlParams = new URLSearchParams(window.location.search);
@@ -102,7 +89,6 @@ function carregarDetalhes() {
   }
 }
 
-// Função para lidar com o formulário
 function configurarFormulario() {
   $("#form-pokemon").on("submit", function (e) {
     e.preventDefault();
@@ -121,7 +107,6 @@ function configurarFormulario() {
     pokemons.push(novoPokemon);
     salvarPokemons();
 
-    // Mostra mensagem e redireciona
     showSuccessMessage();
   });
 }
@@ -144,13 +129,10 @@ function showSuccessMessage() {
   }, 2000);
 }
 
-// Inicialização segura
 document.addEventListener("DOMContentLoaded", function () {
-  // Verifica se é um redirecionamento de cadastro
   const urlParams = new URLSearchParams(window.location.search);
   if (urlParams.get("cadastro") === "sucesso") {
     alert("Pokémon cadastrado com sucesso!");
-    // Remove o parâmetro da URL
     history.replaceState(null, "", "index.html");
   }
 

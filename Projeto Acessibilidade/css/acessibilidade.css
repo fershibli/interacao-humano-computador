@@ -1,4 +1,3 @@
-/* Protanopia (insensibilidade ao vermelho) */
 .protanopia {
   --pokemon-red: #5E5E5E;
   --pokemon-yellow: #F5F5F5;
@@ -6,7 +5,6 @@
   filter: grayscale(30%) hue-rotate(-45deg);
 }
 
-/* Deuteranopia (insensibilidade ao verde) */
 .deuteranopia {
   --pokemon-red: #8C2A2A;
   --pokemon-yellow: #F5F5F5;
@@ -14,7 +12,6 @@
   filter: grayscale(20%) hue-rotate(45deg);
 }
 
-/* Tritanopia (insensibilidade ao azul) */
 .tritanopia {
   --pokemon-red: #8C2A2A;
   --pokemon-yellow: #F5F5F5;
@@ -22,7 +19,6 @@
   filter: grayscale(10%) hue-rotate(180deg);
 }
 
-/* Estilos para o leitor ativo */
 #btn-leitor.active {
   background: var(--pokemon-blue);
   color: white;
@@ -35,7 +31,6 @@
   100% { transform: scale(1); }
 }
 
-/* Garante que o dropdown funcione em todos os modos */
 body.protanopia .dropdown-menu,
 body.deuteranopia .dropdown-menu,
 body.tritanopia .dropdown-menu {
@@ -44,7 +39,6 @@ body.tritanopia .dropdown-menu {
     border: 2px solid black !important;
 }
 
-/* Estilos para os modos de daltonismo */
 body.protanopia {
     filter: hue-rotate(-45deg) saturate(0.8);
     --pokemon-red: #5E5E5E;

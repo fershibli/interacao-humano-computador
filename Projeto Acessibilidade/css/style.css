@@ -134,7 +134,6 @@ main {
   outline: 2px solid white;
 }
 
-/* Dropdown daltonismo */
 .dropdown-daltonismo {
   position: relative;
 }
@@ -172,7 +171,6 @@ main {
   display: block;
 }
 
-/* Lista de Pokémons */
 .pokemon-list {
   padding: 2rem 0;
 }
@@ -202,7 +200,6 @@ main {
   color: var(--pokemon-red);
 }
 
-/* Estilos para o formulário */
 .form-container {
   width: 90%;
   max-width: 800px;
@@ -276,7 +273,6 @@ main {
   background: var(--pokemon-blue);
 }
 
-/* Estilos para detalhes do Pokémon */
 .pokemon-details {
   width: 90%;
   max-width: 800px;
