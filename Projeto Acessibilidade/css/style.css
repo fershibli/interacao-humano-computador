@@ -103,6 +103,11 @@ main {
   font-weight: bold;
 }
 
+.main-nav .active {
+  background: var(--pokemon-blue);
+  font-weight: bold;
+}
+
 .acessibilidade-bar {
   display: flex;
   gap: 0.5rem;

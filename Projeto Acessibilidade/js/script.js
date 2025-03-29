@@ -1,3 +1,31 @@
+function initAfterHeaderLoad() {
+  // Configura o link ativo
+  const currentPage = window.location.pathname.split("/").pop();
+  $(`#nav-${currentPage.replace(".html", "")}`).addClass("active");
+
+  // Restante da inicialização
+  carregarPokemons();
+  carregarDetalhes();
+  if ($("#form-pokemon").length) {
+    configurarFormulario();
+  }
+}
+
+// Modifique o event listener para:
+$(document).ready(function () {
+  // Verifica se é um redirecionamento de cadastro
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get("cadastro") === "sucesso") {
+    alert("Pokémon cadastrado com sucesso!");
+    history.replaceState(null, "", "index.html");
+  }
+
+  // Se o header já estiver carregado (página recarregada)
+  if ($("#header-container").children().length > 0) {
+    initAfterHeaderLoad();
+  }
+});
+
 // Array para armazenar os Pokémons
 let pokemons = JSON.parse(localStorage.getItem("pokemons")) || [];
 
