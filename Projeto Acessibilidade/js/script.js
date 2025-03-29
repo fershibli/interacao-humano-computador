@@ -1,5 +1,5 @@
 function initAfterHeaderLoad() {
-  const currentPage = window.location.pathname.split("/").pop() || "index.html";
+  const currentPage = window.location.pathname.split("/").pop();
   const pageId = currentPage.replace(".html", "");
 
   // Remove classe active de todos
