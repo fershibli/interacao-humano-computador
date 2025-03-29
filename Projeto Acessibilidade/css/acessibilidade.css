@@ -34,3 +34,34 @@
   50% { transform: scale(1.1); }
   100% { transform: scale(1); }
 }
+
+/* Garante que o dropdown funcione em todos os modos */
+body.protanopia .dropdown-menu,
+body.deuteranopia .dropdown-menu,
+body.tritanopia .dropdown-menu {
+    background: white !important;
+    color: black !important;
+    border: 2px solid black !important;
+}
+
+/* Estilos para os modos de daltonismo */
+body.protanopia {
+    filter: hue-rotate(-45deg) saturate(0.8);
+    --pokemon-red: #5E5E5E;
+    --pokemon-yellow: #F5F5F5;
+    --pokemon-blue: #2A4B8C;
+}
+
+body.deuteranopia {
+    filter: hue-rotate(45deg) saturate(0.8);
+    --pokemon-red: #8C2A2A;
+    --pokemon-yellow: #F5F5F5;
+    --pokemon-blue: #2A4B8C;
+}
+
+body.tritanopia {
+    filter: hue-rotate(180deg) saturate(0.8);
+    --pokemon-red: #8C2A2A;
+    --pokemon-yellow: #F5F5F5;
+    --pokemon-blue: #2A8C8C;
+}
