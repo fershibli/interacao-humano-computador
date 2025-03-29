@@ -99,30 +99,43 @@ function carregarDetalhes() {
 
 // Função para lidar com o formulário
 function configurarFormulario() {
-  const form = document.getElementById("form-pokemon");
-
-  if (!form) return;
-
-  form.addEventListener("submit", function (e) {
+  $("#form-pokemon").on("submit", function (e) {
     e.preventDefault();
 
     const novoPokemon = {
-      nome: form.nome.value,
-      tipo: form.tipo.value,
-      nivel: form.nivel.value,
-      shiny: form.shiny.checked,
-      hp: form.hp.value,
-      ataque: form.ataque.value,
-      defesa: form.defesa.value,
-      descricao: form.descricao.value,
+      nome: $("#nome").val(),
+      tipo: $("#tipo").val(),
+      nivel: $("#nivel").val(),
+      shiny: $("#shiny").is(":checked"),
+      hp: $("#hp").val(),
+      ataque: $("#ataque").val(),
+      defesa: $("#defesa").val(),
+      descricao: $("#descricao").val(),
     };
 
     pokemons.push(novoPokemon);
     salvarPokemons();
 
-    // Redireciona sem recarregar infinitamente
-    window.location.href = "index.html?cadastro=sucesso";
-    return false;
+    // Mostra mensagem e redireciona
+    showSuccessMessage();
+  });
+}
+
+function showSuccessMessage() {
+  // Cria elemento de mensagem
+  const $msg = $(
+    '<div class="success-message">Pokémon cadastrado com sucesso!</div>'
+  );
+  $("body").append($msg);
+
+  // Animação e redirecionamento
+  $msg.fadeIn(300, function () {
+    setTimeout(function () {
+      $msg.fadeOut(300, function () {
+        $(this).remove();
+        window.location.href = "index.html";
+      });
+    }, 2000);
   });
 }
 

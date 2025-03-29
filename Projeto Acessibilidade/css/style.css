@@ -331,3 +331,17 @@ main {
 .back-link:hover {
   text-decoration: underline;
 }
+
+.success-message {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--pokemon-blue);
+  color: white;
+  padding: 15px 30px;
+  border-radius: 5px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+  z-index: 1000;
+  display: none;
+}
