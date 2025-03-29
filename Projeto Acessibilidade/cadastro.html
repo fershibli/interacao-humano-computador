@@ -12,42 +12,7 @@
     <!-- Skip Content (acessibilidade) -->
     <a class="skip-content" href="#main">Ir para conteúdo principal</a>
     
-    <header class="main-header" role="banner">
-      <h1 class="logo">
-        <img src="assets/pokebola.png" alt="Imagem de uma Pokébola" class="logo-img">
-        PokéAcessível
-        <img src="assets/pokebola.png" alt="Imagem de uma Pokébola" class="logo-img">
-      </h1>
-      
-      <nav class="nav-container">
-            <div class="main-nav" role="navigation" aria-label="Navegação principal">
-                <ul>
-                    <li><a href="index.html">Listar Pokémons</a></li>
-                    <li><a href="cadastro.html" aria-current="page">Cadastrar Pokémon</a></li>
-                </ul>
-              </div>
-            
-            <div class="acessibilidade-bar" role="toolbar" aria-label="Ferramentas de acessibilidade">
-                <button id="btn-leitor" aria-label="Ativar leitor de voz">
-                    <span aria-hidden="true">&#x1F5E3;</span>
-                </button>
-                
-                <div class="dropdown-daltonismo">
-                    <button id="btn-daltonismo" aria-expanded="false" aria-haspopup="true" aria-label="Opções para daltonismo">
-                        <span aria-hidden="true">👁️</span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="btn-daltonismo">
-                        <li><button data-mode="protanopia">Protanopia</button></li>
-                        <li><button data-mode="deuteranopia">Deuteranopia</button></li>
-                        <li><button data-mode="tritanopia">Tritanopia</button></li>
-                        <li><button data-mode="reset">Resetar Cores</button></li>
-                    </ul>
-                </div>
-                
-                <div id="vlibras-button" aria-label="Acessibilidade em LIBRAS"></div>
-            </div>
-        </nav>
-    </header>
+    <div id="header-container"></div>
     
     <main id="main" role="main">
         <section class="form-container">
@@ -115,9 +80,23 @@
         <div class="vw-plugin-top-wrapper"></div>
       </div>
     </div>
-    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <div id="vlibras-container"></div>
+    
     <script>
-      new window.VLibras.Widget('https://vlibras.gov.br/app');
+      $(function() {
+          $("#header-container").load("components/header.html", function() {
+              const currentPage = location.pathname.split('/').pop();
+              $(`#nav-${currentPage.replace('.html', '')}`).attr('aria-current', 'page');
+          });
+          
+          // Carrega VLibras de forma independente
+          const vlibrasScript = document.createElement('script');
+          vlibrasScript.src = 'https://vlibras.gov.br/app/vlibras-plugin.js';
+          vlibrasScript.onload = function() {
+              new window.VLibras.Widget('https://vlibras.gov.br/app');
+          };
+          document.body.appendChild(vlibrasScript);
+      });
     </script>
 </body>
 </html>
