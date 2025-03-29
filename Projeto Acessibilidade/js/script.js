@@ -1,7 +1,12 @@
 function initAfterHeaderLoad() {
-  // Configura o link ativo
-  const currentPage = window.location.pathname.split("/").pop();
-  $(`#nav-${currentPage.replace(".html", "")}`).addClass("active");
+  const currentPage = window.location.pathname.split("/").pop() || "index.html";
+  const pageId = currentPage.replace(".html", "");
+
+  // Remove classe active de todos
+  $(".main-nav a").removeClass("active");
+
+  // Adiciona ao link correto
+  $(`#nav-${pageId}`).addClass("active");
 
   // Restante da inicialização
   carregarPokemons();
