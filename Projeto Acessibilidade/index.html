@@ -24,19 +24,30 @@
 
     <script src="js/script.js"></script>
     <script src="js/acessibilidade.js"></script>
-    
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+          <div class="vw-plugin-top-wrapper"></div>
+        </div>
+      </div>
+      
     <div id="vlibras-container"></div>
     
-    <script>
-        $(function() {
-            $("#header-container").load("components/header.html", function() {
-                // Ativa o link atual na navegação
-                const currentPage = location.pathname.split('/').pop();
-                $(`#nav-${currentPage.replace('.html', '')}`).attr('aria-current', 'page');
-            });
-            
-            $("#vlibras-container").load("components/vlibras.html");
+  <script>
+    $(function() {
+        $("#header-container").load("components/header.html", function() {
+            const currentPage = location.pathname.split('/').pop();
+            $(`#nav-${currentPage.replace('.html', '')}`).attr('aria-current', 'page');
         });
-    </script>
+        
+        // Carrega VLibras de forma independente
+        const vlibrasScript = document.createElement('script');
+        vlibrasScript.src = 'https://vlibras.gov.br/app/vlibras-plugin.js';
+        vlibrasScript.onload = function() {
+            new window.VLibras.Widget('https://vlibras.gov.br/app');
+        };
+        document.body.appendChild(vlibrasScript);
+    });
+  </script>
 </body>
 </html>
