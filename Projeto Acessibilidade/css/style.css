@@ -103,7 +103,6 @@ main {
   font-weight: bold;
 }
 
-/* Barra de acessibilidade */
 .acessibilidade-bar {
   display: flex;
   gap: 0.5rem;
@@ -198,4 +197,132 @@ main {
   color: var(--pokemon-red);
 }
 
-/* Estilos para cards de Pokémon serão adicionados depois */
+/* Estilos para o formulário */
+.form-container {
+  width: 90%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.form-container h2 {
+  color: var(--pokemon-red);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.pokemon-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: var(--pokemon-blue);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid var(--pokemon-gray);
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.stats-group {
+  grid-column: span 2;
+  border: 1px solid var(--pokemon-gray);
+  border-radius: 4px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.stats-group legend {
+  padding: 0 0.5rem;
+  font-weight: bold;
+  color: var(--pokemon-blue);
+}
+
+.submit-btn {
+  grid-column: span 2;
+  background: var(--pokemon-red);
+  color: white;
+  border: none;
+  padding: 0.75rem;
+  font-size: 1.1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.submit-btn:hover {
+  background: var(--pokemon-blue);
+}
+
+/* Estilos para detalhes do Pokémon */
+.pokemon-details {
+  width: 90%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.pokemon-card-detalhes {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 2rem;
+  background: white;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.pokemon-imagem {
+  position: relative;
+  text-align: center;
+}
+
+.pokemon-imagem img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.shiny-badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  font-size: 2rem;
+  color: var(--pokemon-yellow);
+  text-shadow: 0 0 3px var(--pokemon-dark);
+  display: none;
+}
+
+.pokemon-info p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 2rem;
+  color: var(--pokemon-blue);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PokéAcessível - Cadastrar Pokémon</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/acessibilidade.css">
+</head>
+<body>
+    <!-- Skip Content (acessibilidade) -->
+    <a class="skip-content" href="#main">Ir para conteúdo principal</a>
+    
+    <header class="main-header" role="banner">
+      <h1 class="logo">
+        <img src="assets/pokebola.png" alt="Imagem de uma Pokébola" class="logo-img">
+        PokéAcessível
+        <img src="assets/pokebola.png" alt="Imagem de uma Pokébola" class="logo-img">
+      </h1>
+      
+      <nav class="nav-container">
+            <div class="main-nav" role="navigation" aria-label="Navegação principal">
+                <ul>
+                    <li><a href="index.html">Listar Pokémons</a></li>
+                    <li><a href="cadastro.html" aria-current="page">Cadastrar Pokémon</a></li>
+                </ul>
+              </div>
+            
+            <div class="acessibilidade-bar" role="toolbar" aria-label="Ferramentas de acessibilidade">
+                <button id="btn-leitor" aria-label="Ativar leitor de voz">
+                    <span aria-hidden="true">&#x1F5E3;</span>
+                </button>
+                
+                <div class="dropdown-daltonismo">
+                    <button id="btn-daltonismo" aria-expanded="false" aria-haspopup="true" aria-label="Opções para daltonismo">
+                        <span aria-hidden="true">👁️</span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="btn-daltonismo">
+                        <li><button data-mode="protanopia">Protanopia</button></li>
+                        <li><button data-mode="deuteranopia">Deuteranopia</button></li>
+                        <li><button data-mode="tritanopia">Tritanopia</button></li>
+                        <li><button data-mode="reset">Resetar Cores</button></li>
+                    </ul>
+                </div>
+                
+                <div id="vlibras-button" aria-label="Acessibilidade em LIBRAS"></div>
+            </div>
+        </nav>
+    </header>
+    
+    <main id="main" role="main">
+        <section class="form-container">
+            <h2>Cadastrar Novo Pokémon</h2>
+            <form id="form-pokemon" class="pokemon-form" aria-labelledby="form-title">
+                <div class="form-group">
+                    <label for="nome">Nome do Pokémon:</label>
+                    <input type="text" id="nome" name="nome" required aria-required="true">
+                </div>
+                
+                <div class="form-group">
+                    <label for="tipo">Tipo Principal:</label>
+                    <select id="tipo" name="tipo" required aria-required="true">
+                        <option value="">Selecione um tipo</option>
+                        <option value="Água">Água</option>
+                        <option value="Fogo">Fogo</option>
+                        <option value="Planta">Planta</option>
+                        <option value="Elétrico">Elétrico</option>
+                        <option value="Normal">Normal</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="nivel">Nível:</label>
+                    <input type="number" id="nivel" name="nivel" min="1" max="100" required aria-required="true">
+                </div>
+                
+                <div class="form-group">
+                    <label for="shiny">Shiny:</label>
+                    <input type="checkbox" id="shiny" name="shiny" aria-label="Pokémon shiny">
+                </div>
+                
+                <fieldset class="stats-group">
+                    <legend>Atributos</legend>
+                    <div class="form-group">
+                        <label for="hp">HP:</label>
+                        <input type="number" id="hp" name="hp" min="1" max="255">
+                    </div>
+                    <div class="form-group">
+                        <label for="ataque">Ataque:</label>
+                        <input type="number" id="ataque" name="ataque" min="1" max="255">
+                    </div>
+                    <div class="form-group">
+                        <label for="defesa">Defesa:</label>
+                        <input type="number" id="defesa" name="defesa" min="1" max="255">
+                    </div>
+                </fieldset>
+                
+                <div class="form-group">
+                    <label for="descricao">Descrição:</label>
+                    <textarea id="descricao" name="descricao" rows="4" aria-describedby="descricao-help"></textarea>
+                    <small id="descricao-help">Descreva características especiais do seu Pokémon</small>
+                </div>
+                
+                <button type="submit" class="submit-btn">Cadastrar Pokémon</button>
+            </form>
+        </section>
+    </main>
+
+    <script src="js/script.js"></script>
+    <script src="js/acessibilidade.js"></script>
+    <div vw class="enabled">
+      <div vw-access-button class="active"></div>
+      <div vw-plugin-wrapper>
+        <div class="vw-plugin-top-wrapper"></div>
+      </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+      new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+</body>
+</html>

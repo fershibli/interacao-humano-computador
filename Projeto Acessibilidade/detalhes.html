@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PokéAcessível - Detalhes do Pokémon</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/acessibilidade.css">
+</head>
+<body>
+    <!-- Skip Content (acessibilidade) -->
+    <a class="skip-content" href="#main">Ir para conteúdo principal</a>
+    
+    <header class="main-header" role="banner">
+      <h1 class="logo">
+        <img src="assets/pokebola.png" alt="Imagem de uma Pokébola" class="logo-img">
+        PokéAcessível
+        <img src="assets/pokebola.png" alt="Imagem de uma Pokébola" class="logo-img">
+      </h1>
+      
+      <nav class="nav-container">
+            <div class="main-nav" role="navigation" aria-label="Navegação principal">
+                <ul>
+                    <li><a href="index.html">Listar Pokémons</a></li>
+                    <li><a href="cadastro.html">Cadastrar Pokémon</a></li>
+                </ul>
+              </div>
+            
+            <div class="acessibilidade-bar" role="toolbar" aria-label="Ferramentas de acessibilidade">
+                <button id="btn-leitor" aria-label="Ativar leitor de voz">
+                    <span aria-hidden="true">&#x1F5E3;</span>
+                </button>
+                
+                <div class="dropdown-daltonismo">
+                    <button id="btn-daltonismo" aria-expanded="false" aria-haspopup="true" aria-label="Opções para daltonismo">
+                        <span aria-hidden="true">👁️</span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="btn-daltonismo">
+                        <li><button data-mode="protanopia">Protanopia</button></li>
+                        <li><button data-mode="deuteranopia">Deuteranopia</button></li>
+                        <li><button data-mode="tritanopia">Tritanopia</button></li>
+                        <li><button data-mode="reset">Resetar Cores</button></li>
+                    </ul>
+                </div>
+                
+                <div id="vlibras-button" aria-label="Acessibilidade em LIBRAS"></div>
+            </div>
+        </nav>
+    </header>
+    
+    <main id="main" role="main">
+        <section class="pokemon-details">
+            <h2 id="pokemon-nome">Detalhes do Pokémon</h2>
+            <div class="pokemon-card-detalhes">
+                <div class="pokemon-imagem">
+                    <img id="pokemon-sprite" src="assets/pokebola.png" alt="Imagem do Pokémon">
+                    <span id="pokemon-shiny" class="shiny-badge" aria-hidden="true">✨</span>
+                </div>
+                <div class="pokemon-info">
+                    <p><strong>Tipo:</strong> <span id="pokemon-tipo"></span></p>
+                    <p><strong>Nível:</strong> <span id="pokemon-nivel"></span></p>
+                    <p><strong>HP:</strong> <span id="pokemon-hp"></span></p>
+                    <p><strong>Ataque:</strong> <span id="pokemon-ataque"></span></p>
+                    <p><strong>Defesa:</strong> <span id="pokemon-defesa"></span></p>
+                    <p><strong>Descrição:</strong> <span id="pokemon-descricao"></span></p>
+                </div>
+            </div>
+            <a href="index.html" class="back-link">Voltar para lista</a>
+        </section>
+    </main>
+
+    <script src="js/script.js"></script>
+    <script src="js/acessibilidade.js"></script>
+    <div vw class="enabled">
+      <div vw-access-button class="active"></div>
+      <div vw-plugin-wrapper>
+        <div class="vw-plugin-top-wrapper"></div>
+      </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+      new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+</body>
+</html>

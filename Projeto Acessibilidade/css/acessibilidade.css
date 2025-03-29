@@ -1,0 +1,36 @@
+/* Protanopia (insensibilidade ao vermelho) */
+.protanopia {
+  --pokemon-red: #5E5E5E;
+  --pokemon-yellow: #F5F5F5;
+  --pokemon-blue: #2A4B8C;
+  filter: grayscale(30%) hue-rotate(-45deg);
+}
+
+/* Deuteranopia (insensibilidade ao verde) */
+.deuteranopia {
+  --pokemon-red: #8C2A2A;
+  --pokemon-yellow: #F5F5F5;
+  --pokemon-blue: #2A4B8C;
+  filter: grayscale(20%) hue-rotate(45deg);
+}
+
+/* Tritanopia (insensibilidade ao azul) */
+.tritanopia {
+  --pokemon-red: #8C2A2A;
+  --pokemon-yellow: #F5F5F5;
+  --pokemon-blue: #2A8C8C;
+  filter: grayscale(10%) hue-rotate(180deg);
+}
+
+/* Estilos para o leitor ativo */
+#btn-leitor.active {
+  background: var(--pokemon-blue);
+  color: white;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
