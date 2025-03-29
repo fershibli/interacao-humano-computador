@@ -127,21 +127,21 @@ function configurarFormulario() {
 }
 
 function showSuccessMessage() {
-  // Cria elemento de mensagem
-  const $msg = $(
-    '<div class="success-message">Pokémon cadastrado com sucesso!</div>'
-  );
-  $("body").append($msg);
+  const $msg = $(`
+      <div class="success-message" role="alert" aria-live="assertive">
+          Pokémon cadastrado com sucesso! Redirecionando para a listagem...
+      </div>
+  `);
 
-  // Animação e redirecionamento
-  $msg.fadeIn(300, function () {
-    setTimeout(function () {
-      $msg.fadeOut(300, function () {
-        $(this).remove();
-        window.location.href = "index.html";
-      });
-    }, 2000);
-  });
+  $("body").append($msg);
+  $msg.fadeIn(300);
+
+  setTimeout(function () {
+    $msg.fadeOut(300, function () {
+      $(this).remove();
+      window.location.href = "index.html";
+    });
+  }, 2000);
 }
 
 // Inicialização segura
